@@ -1,5 +1,6 @@
 module.exports = {
-  title: 'vue2.0-admin-template',
+
+  title: 'bbs-demand-admin',
 
   /**
    * @type {boolean} true | false

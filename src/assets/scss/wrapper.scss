@@ -1,0 +1,125 @@
+.pointer-color {
+    color: #409EFF;
+}
+.search-wrap {
+    overflow: hidden;
+    .have-fold-div{
+        flex: 1;
+        transition: all .2s ease-in-out;
+        // overflow: auto;
+    }
+    .search-list {
+        height: 28px;
+        line-height: 28px;
+        margin: 0 20px 10px 0;
+        overflow: hidden;
+        & > p {
+            text-align: left;
+            padding-right: 5px;
+            float: left;
+        }
+        .search-list-title {
+            width: 122px;
+            text-align: right;
+        }
+        .search-list-title2 {
+            width: 80px;
+            text-align: right;
+        }
+        .search-list-content {
+            float: left;
+            // width: 160px;
+            width: 150px;
+        }
+    }
+    .search-list-input {
+        margin-right: 20px;
+
+    }
+    .search-list:last-child{
+        margin-right: 0;
+    }
+    .search-list2 {
+        width: 320px;
+    }
+    .search-list3 {
+        width: 60px;
+        margin-right: 0;
+        padding-left: 0;
+    }
+    .search-list-fold {
+        // width: 170px;
+        height: 28px;
+        line-height: 28px;
+        margin-bottom: 10px;
+        padding-left: 8px;
+    }
+    .el-select{
+        width: 100%;
+    }
+    .search-title{
+        height: 28px;
+        line-height: 28px;
+        overflow: hidden;
+    }
+    .search-input-wrap{
+        flex: 1;
+    }
+}  
+.add-wrap {
+    margin-bottom: 10px;
+}
+.list-wrap {
+    .table-img-wrap {
+        height: 26px; 
+        line-height: 26px;
+        vertical-align: middle;
+    }
+}
+.table-foot {
+    line-height: 28px;
+    font-size: 12px;
+    .table-foot-text {
+        padding-right: 30px;
+    }
+    .table-foot-num {
+        color: #1890FF;
+        padding: 0px 5px 0 0;
+    }
+}
+.table-foot2{
+    padding-top: 10px;
+}
+// 回收页面tab样式
+.list-tab-wrap {
+    font-size: 18px;
+    color: #2A2B31;
+    line-height: 24px;
+    // padding: 10px 0 10px;
+    padding-bottom: 10px;
+    // height: 52px;
+    line-height: 32px;
+    .project-name {
+        padding: 0 20px 0 10px;
+        .el-input__inner {
+            border: none;
+            font-size: 18px;
+            width: auto;
+        }
+    }
+}
+.base-info {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    .list {
+        float: left;
+        height: 20px;
+        line-height: 20px;
+        margin-right: 40px;
+        font-size: 12px;
+        text-align: left;
+    }
+    .list:last-child{
+        margin-right: 0;
+    }
+}

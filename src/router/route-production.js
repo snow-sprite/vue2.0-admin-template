@@ -1,11 +1,11 @@
-import MissModule from '@/components/ModuleMissing'
+import MissModule from "@/components/ModuleMissing";
 
 export default file => () => {
-  return import(/* webpackChunkName: "[request]" */ '@/views/' + file)
+  return import(/* webpackChunkName: "[request]" */ "@/views/" + file)
     .then(module => {
-      return module.default
+      return module.default;
     })
     .catch(e => {
-      return MissModule
-    })
-}
+      return MissModule;
+    });
+};

@@ -1,20 +1,21 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import { clearLoginInfo } from '@/utils'
-import axios from 'axios'
-import constantRouter from './constant-router'
+import Vue from 'vue';
+import Router from 'vue-router';
+import { clearLoginInfo } from '@/utils';
+import axios from 'axios';
+import constantRouter from './constant-router';
 import 'nprogress/nprogress.css' // progress bar style
-import store from '@/store'
+import store from "@/store";
 import NProgress from 'nprogress' // progress bar
 import { getToken } from '@/utils/auth' // get token from cookie
+import Layout from '@/layout'
 import { setLocalStorage } from '@/utils/storage'
 // TODO 模拟动态路由
-import mokcDynamicRoutes from './dynamic-route.mock'
+import mokcDynamicRoutes from './dynamic-route.mock';
 Vue.use(Router)
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/register']
+const whiteList = ["/login", "/register"];
 
 // 当前路由下 cancel token 的 source，用于跳转路由时取消请求
 let currentCancelTokenSource = {
@@ -32,7 +33,7 @@ export function cancelRequest() {
 }
 
 // 静态路由
-const mainRoutes = constantRouter
+const mainRoutes = constantRouter;
 
 let firstRoute = null
 const router = createRouter()
@@ -64,7 +65,7 @@ router.beforeEach((to, from, next) => {
   // 添加动态(菜单)路由
   // 1. 已经添加 or 全局路由, 直接访问
   // 2. 获取菜单列表, 添加并保存本地存储
-  const hasToken = getToken('token') || ''
+  const hasToken = getToken('token') || '';
   if (hasToken) {
     if (whiteList.indexOf(to.path) !== -1) {
       if (firstRoute) {
@@ -76,7 +77,7 @@ router.beforeEach((to, from, next) => {
     } else {
       if (router.options.hasDynamicRoutes) {
         if (to.path == '/') {
-          // 解决初次从/login进入到/ 但并未重定向导致空页面的情况
+          firstRoute = { path: getFirstUrl(mainRoutes) || '/' }
           next(firstRoute)
         } else {
           next()
@@ -88,24 +89,24 @@ router.beforeEach((to, from, next) => {
       //TODO 在这里调用api获取路由及权限相关信息
       Promise.resolve(mokcDynamicRoutes)
         .then(res => {
-          const { data } = res
+          const { data } = res;
           // 重置路由
-          resetRouter()
+          resetRouter();
 
-          const dynamicRoutes = dynamicRoutesBuilder(data)
-          mainRoutes[0].children = dynamicRoutes
-          mainRoutes[0].redirect = dynamicRoutes[0].path
-
-          router.options.hasDynamicRoutes = true
+          const dynamicRoutes = dynamicRoutesBuilder(data);
+          mainRoutes[0].children = dynamicRoutes;
+          mainRoutes[0].redirect = dynamicRoutes[0].path;
+          
+          router.options.hasDynamicRoutes = true;
           router.addRoutes([
             ...mainRoutes,
             { path: '*', redirect: { name: '404' } }
-          ])
+          ]);
 
-          stageMainRoutes(mainRoutes)
+          stageMainRoutes(mainRoutes);
           // 默认路由
           firstRoute = { path: getFirstUrl(mainRoutes) || '/' }
-
+          
           next({ ...to, replace: true })
         })
         .catch(e => {
@@ -132,6 +133,7 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+
 router.afterEach(() => {
   // finish progress bar
   NProgress.done()
@@ -141,8 +143,8 @@ router.afterEach(() => {
 function getFirstUrl(menuList) {
   for (const item of menuList) {
     if (item.redirect && /\S/.test(item.redirect)) {
-      return item.redirect
-    } else if (item.path && /\S/.test(item.path)) {
+        return item.redirect
+    } else if (item.path && /\S/.test(item.path)) { 
       return item.path
     } else if (item.children && item.children.length) {
       const result = getFirstUrl(item.children[0])
@@ -153,26 +155,33 @@ function getFirstUrl(menuList) {
 }
 
 /**
- * 动态路由生成器
- * @param {*} menuList 菜单列表
- * @param {*} routes 动态路由
- */
+* 动态路由生成器
+* @param {*} menuList 菜单列表
+* @param {*} routes 动态路由
+*/
 function dynamicRoutesBuilder(menuList = []) {
-  return menuList.map(({ name, menuName, pageRouting, child }) => {
+  return menuList.map(({name, menuName, pageRouting,  child, leaf}) => {
     let route = {
+      name,
       path: pageRouting,
-      component: resolve => require([`@/views${pageRouting}.vue`], resolve),
-      name: name,
+      
       meta: {
         title: menuName,
         require: true,
         icon: name.toLowerCase()
-      }
+      },
     }
 
+    // leaf == 1是叶节点， leaf == 0是树节点 
+    if (leaf == 0) {
+      route.component = Layout
+    } else {
+      route.component = (resolve) => require([`@/views${pageRouting}.vue`], resolve)
+    }
+    
     if (child && child.length > 0) {
-      route.children = dynamicRoutesBuilder(child)
-      route.redirect = route.children[0].path
+      route.children = dynamicRoutesBuilder(child);
+      route.redirect = route.children[0].path;
     }
 
     return route
@@ -186,11 +195,17 @@ function stageMainRoutes(mainRoutes) {
   mainRoutes.some(route => {
     // 找到我们存到根路由下的动态路由 再存起来
     if (route.name == 'Home') {
-      store.commit('SET_ROUTES', route.children)
+      store.commit('SET_ROUTES', route.children);
       setLocalStorage('menuList', JSON.stringify(route.children || '[]'))
       return true
     }
   })
+}
+
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+return originalPush.call(this, location).catch(err => err)
 }
 
 export default router

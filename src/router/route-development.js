@@ -1,1 +1,1 @@
-export default file => require('@/views/' + file).default
+export default file => require("@/views/" + file).default

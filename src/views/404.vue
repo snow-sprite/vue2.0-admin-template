@@ -26,7 +26,6 @@
       <div class="bullshit">
         <div class="bullshit__oops">OOPS!</div>
         <div class="bullshit__info">
-          All rights reserved
           <a
             style="color: #20a0ff"
             href="https://wallstreetcn.com"

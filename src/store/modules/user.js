@@ -15,7 +15,7 @@ const getDefaultState = () => {
 const state = getDefaultState()
 
 const mutations = {
-  RESET_STATE: state => {
+  RESET_STATE: (state) => {
     Object.assign(state, getDefaultState())
   },
   SET_TOKEN: (state, token) => {
@@ -41,8 +41,8 @@ const actions = {
       // login({ username: username.trim(), password: password }).then(response => {
       //   const { data } = response
       //   commit('SET_TOKEN', data.token)
-      setToken('token', 'test-token')
-      resolve()
+        setToken('token', 'test-token')
+        resolve()
       // }).catch(error => {
       //   reject(error)
       // })
@@ -83,11 +83,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       // TODO 这里需要调用退出登录接口
       // logout(state.token).then(() => {
-      removeToken('token') // must remove  token  first
-      resetRouter()
-      clearLoginInfo()
-      commit('RESET_STATE')
-      resolve()
+        removeToken('token') // must remove  token  first
+        resetRouter()
+        clearLoginInfo()
+        commit('RESET_STATE')
+        resolve()
       // }).catch(error => {
       //   reject(error)
       // })
@@ -110,3 +110,4 @@ export default {
   mutations,
   actions
 }
+

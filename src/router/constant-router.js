@@ -18,21 +18,21 @@
   }
  */
 
-import Layout from '@/layout/index.vue'
 const _import = require('./route-' + process.env.NODE_ENV).default
+
+
 export default [
   {
-    path: '/',
-    component: Layout,
-    name: 'Home',
-    meta: {
-      title: '首页',
-      require: true,
-      breadcrumb: false
-    },
-    children: []
+  path: '/',
+  component: _import('Home'),
+  name: 'Home',
+  meta: {
+    title: '首页',
+    require: true,
+    breadcrumb: false
   },
-  {
+  children: []
+  }, {
     path: '/login',
     component: _import('login'),
     name: 'login',
@@ -49,5 +49,5 @@ export default [
       title: '404',
       require: false
     }
-  }
+  },
 ]

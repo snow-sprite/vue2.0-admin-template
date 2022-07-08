@@ -9,22 +9,32 @@
     <div class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
+        <router-tab
+          :keep-alive="true"
+          :keep-last-tab="true"
+          tab-transition="tab-scale"
+          page-transition="page-fade"
+        />
       </div>
-      <app-main />
+      <!-- <app-main /> -->
     </div>
   </div>
 </template>
 
 <script>
-import { Navbar, Sidebar, AppMain } from './components'
+import {
+  Navbar,
+  Sidebar
+  // AppMain
+} from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 
 export default {
   name: 'Layout',
   components: {
     Navbar,
-    Sidebar,
-    AppMain
+    Sidebar
+    // AppMain
   },
   mixins: [ResizeMixin],
   computed: {
@@ -55,8 +65,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/styles/mixin.scss';
-@import '~@/styles/variables.scss';
+@import '~@/assets/styles/mixin.scss';
+@import '~@/assets/styles/variables.scss';
 
 .app-wrapper {
   @include clearfix;
@@ -93,5 +103,44 @@ export default {
 
 .mobile .fixed-header {
   width: 100%;
+}
+::v-deep {
+  // 页面 fade 过渡
+  .page-fade {
+    &-enter-active,
+    &-leave-active {
+      transition: opacity 0s;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+    }
+  }
+
+  // 页签 scale 过渡
+  .tab-scale {
+    &-enter-active,
+    &-leave-active {
+      transition: opacity 0.5s, transform 0.5s;
+    }
+
+    &-enter,
+    &-leave-to {
+      opacity: 0;
+      //   transform: scale(1.5);
+    }
+  }
+}
+</style>
+<style lang="scss">
+.app-wrapper {
+  .router-tab__item.is-active,
+  .router-tab__item:hover {
+    color: #409eff;
+  }
+  .router-tab__contextmenu-item:hover {
+    color: #409eff;
+  }
 }
 </style>
