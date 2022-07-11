@@ -1,0 +1,302 @@
+@charset "UTF-8";
+/*清除默认样式*/
+*,
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+iframe,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td,
+a,
+i,
+del,
+span,
+figure,
+section {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+html,
+body,
+p {
+  font-size: 12px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: var(--scrollbar-thumb);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--scrollbar-corner);
+}
+
+.el-table__empty-block {
+  height: 100%;
+}
+
+a[title='站长统计'] {
+  display: none;
+}
+
+.fr {
+  float: right;
+}
+
+.fl {
+  float: left;
+}
+
+.block {
+  display: block;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.flex-between {
+  flex: 1;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-start {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.flex-end {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.flex-center {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-around {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+}
+
+.items-around {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.items-center {
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.center {
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  list-style: none outside none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:visited,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+// 处理input type = number的上下箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: ' ';
+  clear: both;
+  height: 0;
+}
+
+.popper-class-new {
+  padding: 12px 0 !important;
+  min-width: 120px;
+}
+
+.el-form-item__label {
+  font-size: 12px;
+}
+
+.el-table {
+  font-size: 12px;
+}
+
+.el-table td,
+.el-table th {
+  padding: 8px 0;
+}
+
+.pagination-wrap {
+  padding: 8px 0 10px;
+}
+
+.el-table th > .cell,
+.el-table td > .cell {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.el-table__fixed-right-patch {
+  position: absolute;
+  top: -1px;
+  right: 0;
+  background-color: #eef1f6;
+}
+
+.el-dialog {
+  margin-top: 9vh !important;
+}
+
+.el-dialog .el-dialog__header {
+  font-size: 14px;
+}
+
+.el-dialog .el-dialog__body {
+  max-height: 68vh;
+  overflow: auto;
+  padding: 20px;
+  border-top: 1px solid var(--element-dialog-head-border);
+}
+
+.el-dialog .el-dialog__body .el-date-editor.el-input,
+.el-dialog .el-dialog__body .el-cascader,
+.el-dialog .el-dialog__body .el-select {
+  width: 100%;
+}
+
+.el-dialog .el-dialog__body p {
+  font-size: 12px;
+}
+
+.word-hidden {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.unselect {
+  user-select: none;
+  /* Standard syntax */
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10+ and Edge */
+}
+
+.background {
+  background: var(--default-primary-bg-color);
+}
+
+.my-color-picker .el-color-dropdown__main-wrapper {
+  position: relative;
+  top: 145px;
+}
+
+.my-color-picker .el-color-predefine {
+  position: relative;
+  top: -185px;
+}
+
+.eq2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.pdl-10 {
+  padding-left: 10px;
+}
+
+.el-table {
+  font-size: 12px !important;
+}
+
+.el-table .el-table__cell {
+  padding: 5px 0 !important;
+}
