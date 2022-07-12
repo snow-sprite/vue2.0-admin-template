@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div id="top-height">
+    <div id="review-top-height">
       <div class="search-wrap flex-start">
         <ul class="clearfix" style="flex: 1">
           <li class="search-list fl flex-start">
@@ -10,6 +10,7 @@
               size="mini"
               v-model="search.nickname"
               placeholder="请输入用户昵称"
+              prefix-icon="el-icon-search"
             ></el-input>
           </li>
           <li class="search-list fl flex-start">
@@ -39,67 +40,65 @@
         </ul>
       </div>
     </div>
-    <div class="list-wrap">
-      <el-table
-        v-loading="loading"
-        ref="multipleTable"
-        :data="tableData"
-        tooltip-effect="dark"
-        style="width: 100%"
-        highlight-current-row
-        :height="`${tableHeight}px`"
-        :header-cell-style="{ background: '#eef1f6', color: '#94969A' }"
-      >
-        <el-table-column align="center" type="index" label="序号" width="60">
-          <template slot-scope="scope">
-            <span>{{ (cp - 1) * rows + scope.$index + 1 }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="center"
-          prop="id"
-          show-overflow-tooltip
-          label="用户ID"
-        ></el-table-column>
-        <el-table-column
-          align="center"
-          prop="nickname"
-          show-overflow-tooltip
-          label="用户昵称"
-        ></el-table-column>
-        <el-table-column
-          align="center"
-          prop="threepart"
-          label="认证身份"
-        ></el-table-column>
-        <el-table-column align="center" prop="realNameEarnest" label="审核状态">
-          <template slot-scope="scope">
-            <span>{{ scope.row.realNameEarnest || '--' }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" prop="date" label="提交审核时间">
-          <template slot-scope="scope">
-            <span>{{ scope.row.date || '--' }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" fixed="right" label="操作">
-          <template slot-scope="scope">
-            <el-button
-              type="text"
-              size="mini"
-              @click="getTableDetail(1, scope.row.id, '个人/企业认证审核/详情')"
-              >详情</el-button
-            >
-            <el-button
-              type="text"
-              size="mini"
-              @click="getTableDetail(2, scope.row.id, '个人/企业认证审核/详情')"
-              >审核</el-button
-            >
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+    <el-table
+      v-loading="loading"
+      ref="multipleTable"
+      :data="tableData"
+      tooltip-effect="dark"
+      style="width: 100%"
+      highlight-current-row
+      :height="`${tableHeight}px`"
+      :header-cell-style="{ background: '#eef1f6', color: '#94969A' }"
+    >
+      <el-table-column align="center" type="index" label="序号" width="60">
+        <template slot-scope="scope">
+          <span>{{ (cp - 1) * rows + scope.$index + 1 }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        prop="id"
+        show-overflow-tooltip
+        label="用户ID"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="nickname"
+        show-overflow-tooltip
+        label="用户昵称"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="threepart"
+        label="认证身份"
+      ></el-table-column>
+      <el-table-column align="center" prop="realNameEarnest" label="审核状态">
+        <template slot-scope="scope">
+          <span>{{ scope.row.realNameEarnest || '--' }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" prop="date" label="提交审核时间">
+        <template slot-scope="scope">
+          <span>{{ scope.row.date || '--' }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" fixed="right" label="操作">
+        <template slot-scope="scope">
+          <el-button
+            type="text"
+            size="mini"
+            @click="getTableDetail(1, scope.row.id, '个人/企业认证审核/详情')"
+            >详情</el-button
+          >
+          <el-button
+            type="text"
+            size="mini"
+            @click="getTableDetail(2, scope.row.id, '个人/企业认证审核/详情')"
+            >审核</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
     <!-- 分页 -->
     <el-pagination
       class="pagination-wrap"
@@ -246,7 +245,7 @@ export default {
     },
     windowOnResize() {
       this.$nextTick(() => {
-        this.tableHeight = calcSearchSetTableHeight('top-height', 170)
+        this.tableHeight = calcSearchSetTableHeight('review-top-height', 170)
       })
     }
   }

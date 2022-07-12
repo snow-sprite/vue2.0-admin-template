@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div id="top-height">
+    <div id="list-top-height">
       <div class="search-wrap flex-start">
         <ul class="clearfix" style="flex: 1">
           <li class="search-list fl flex-start">
@@ -10,6 +10,7 @@
               size="mini"
               v-model="search.nickname"
               placeholder="请输入用户昵称"
+              prefix-icon="el-icon-search"
             ></el-input>
           </li>
           <li class="search-list fl flex-start">
@@ -19,6 +20,7 @@
               size="mini"
               v-model.number="search.mobile"
               placeholder="请输入手机号"
+              prefix-icon="el-icon-search"
             ></el-input>
           </li>
           <li class="search-list fl flex-start">
@@ -241,7 +243,21 @@ export default {
       rows: 10,
       total: 0,
       tableHeight: 0,
-      tableData: [],
+      tableData: [
+        {
+          id: 56,
+          avatar:
+            'https://bbs-official-website.oss-cn-beijing.aliyuncs.com/bbs-official-website/20220128/9204e6f9-dc93-4161-874a-8b9e28947059/1643353606698',
+          nickname: 'Cid',
+          mobile: 18888888888,
+          threepart: '微信',
+          realNameEarnest: '天行雨',
+          creator: '古德',
+          source: '想象',
+          createdTime: '2020-07-12 20:20:20',
+          pubTime: '2020-07-12 20:20:20'
+        }
+      ],
       // 添加/编辑用户
       operateData: {
         dialogType: 0,
@@ -335,7 +351,7 @@ export default {
     },
     windowOnResize() {
       this.$nextTick(() => {
-        this.tableHeight = calcSearchSetTableHeight('top-height', 170)
+        this.tableHeight = calcSearchSetTableHeight('list-top-height', 170)
       })
     }
   }

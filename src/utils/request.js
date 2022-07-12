@@ -31,7 +31,7 @@ service.interceptors.request.use(
     let token = getToken("token") || "";
     // let each request carry token
     if (token) {
-      config.headers["token"] = getToken; // 除了登录接口，其他都需要带token
+      config.headers["token"] = token; // 除了登录接口，其他都需要带token
     }
     return config
   },
@@ -54,7 +54,7 @@ service.interceptors.response.use(
    * Here is just an example
    * You can also judge the status by HTTP Status Code
    */
-   (response) => {
+  (response) => {
     if (response.status == 200) {
       // return resStatusFun(response)
       const res = response.data;
