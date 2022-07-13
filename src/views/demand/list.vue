@@ -226,6 +226,17 @@
         <el-table-column
           align="center"
           min-width="80"
+          prop="enlistNum"
+          show-overflow-tooltip
+          label="制作方人数"
+        >
+          <template slot-scope="scope">
+            <!-- <span>{{ scope.row.enlistNum || '--' }}</span> -->
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="center"
+          min-width="80"
           prop="taskNum"
           show-overflow-tooltip
           label="任务数量"

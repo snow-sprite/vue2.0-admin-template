@@ -2,6 +2,8 @@
 
 > 这是一个极简的 vue admin 管理后台模板。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
+## `src`中`views`文件路径对应其路由
+> 开发环境不使用懒加载, 因为懒加载页面太多的话会造成webpack热更新太慢, 所以只有生产环境使用懒加载
 ## Build Setup
 
 ```bash
@@ -18,7 +20,7 @@ npm install --registry=https://registry.npm.taobao.org
 npm run dev
 ```
 
-浏览器访问 [http://localhost:9528](http://localhost:9527)
+浏览器访问 [http://localhost:9527](http://localhost:9527)
 
 ## 发布
 
@@ -31,7 +33,6 @@ npm run build:prod
 ```
 
 ## 其它
-> 项目`src`中`views`中文件路径对应其路由
 
 ```bash
 # 代码格式检查

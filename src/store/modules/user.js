@@ -41,7 +41,7 @@ const actions = {
       // login({ username: username.trim(), password: password }).then(response => {
       //   const { data } = response
       //   commit('SET_TOKEN', data.token)
-        setToken('token', 'test-token')
+        setToken('token', '3716ecf9-b4bd-4a2e-bb67-f43cbc38f7fft0u1')
         resolve()
       // }).catch(error => {
       //   reject(error)

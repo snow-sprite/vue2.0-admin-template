@@ -89,6 +89,14 @@
                   </p>
                 </li>
                 <li class="info-list fl clearfix">
+                  <span class="info-list-title">是否公开：</span>
+                  <p class="info-list-content bold">
+                    <span>{{
+                      detailData.beOpen == 1 ? '公开' : '不公开'
+                    }}</span>
+                  </p>
+                </li>
+                <li class="info-list fl clearfix">
                   <span class="info-list-title">发布人：</span>
                   <p class="info-list-content bold">
                     {{ detailData.createdUserName }}

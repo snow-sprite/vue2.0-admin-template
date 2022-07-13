@@ -11,10 +11,12 @@ import Layout from '@/layout'
 import { setLocalStorage } from '@/utils/storage'
 // TODO 模拟动态路由
 import mokcDynamicRoutes from './dynamic-route.mock';
+
 Vue.use(Router)
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
+const _import = require('./route-' + process.env.NODE_ENV).default
 const whiteList = ["/login", "/register"];
 
 // 当前路由下 cancel token 的 source，用于跳转路由时取消请求
@@ -153,7 +155,6 @@ function getFirstUrl(menuList) {
   }
   return null
 }
-
 /**
 * 动态路由生成器
 * @param {*} menuList 菜单列表
@@ -176,7 +177,7 @@ function dynamicRoutesBuilder(menuList = []) {
     if (leaf == 0) {
       route.component = Layout
     } else {
-      route.component = (resolve) => require([`@/views${pageRouting}.vue`], resolve)
+      route.component = _import(pageRouting.replace(/\//, ''))
     }
     
     if (child && child.length > 0) {

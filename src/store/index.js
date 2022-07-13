@@ -7,7 +7,7 @@ import user from './modules/user'
 Vue.use(Vuex)
 
 const state = {
-  asyncRoutes: false
+  asyncRoutes: []
 }
 const mutations = {
   SET_ROUTES(state, routes) {

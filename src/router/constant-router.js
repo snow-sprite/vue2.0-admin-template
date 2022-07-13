@@ -20,7 +20,6 @@
 
 const _import = require('./route-' + process.env.NODE_ENV).default
 
-
 export default [
   {
   path: '/',
