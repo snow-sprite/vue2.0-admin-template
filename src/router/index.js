@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import { clearLoginInfo } from '@/utils';
-import axios from 'axios';
+// import axios from 'axios';
 import constantRouter from './constant-router';
 import 'nprogress/nprogress.css' // progress bar style
 import store from "@/store";
@@ -20,19 +20,19 @@ const _import = require('./route-' + process.env.NODE_ENV).default
 const whiteList = ["/login", "/register"];
 
 // 当前路由下 cancel token 的 source，用于跳转路由时取消请求
-let currentCancelTokenSource = {
-  token: null,
-  cancel: null
-}
+// let currentCancelTokenSource = {
+//   token: null,
+//   cancel: null
+// }
 
-export function getCurrentCancelToken() {
-  return currentCancelTokenSource.token
-}
+// export function getCurrentCancelToken() {
+//   return currentCancelTokenSource.token
+// }
 
 // 取消现有所有未完成的请求
-export function cancelRequest() {
-  currentCancelTokenSource.cancel && currentCancelTokenSource.cancel()
-}
+// export function cancelRequest() {
+//   currentCancelTokenSource.cancel && currentCancelTokenSource.cancel()
+// }
 
 // 静态路由
 const mainRoutes = constantRouter;
@@ -59,10 +59,10 @@ export function resetRouter() {
 router.beforeEach((to, from, next) => {
   // start progress bar
   NProgress.start()
-  // 取消旧页面的请求
-  cancelRequest()
+  // 取消旧页面的请求 与router-tab缓存互斥
+  // cancelRequest()
   // 生成当前页新的 cancel token
-  currentCancelTokenSource = axios.CancelToken.source()
+  // currentCancelTokenSource = axios.CancelToken.source()
 
   // 添加动态(菜单)路由
   // 1. 已经添加 or 全局路由, 直接访问

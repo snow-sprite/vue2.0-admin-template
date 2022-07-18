@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
 import { getToken, removeToken } from '@/utils/auth'
-import { getCurrentCancelToken } from '@/router'
+// import { getCurrentCancelToken } from '@/router'
 
 // 清除cookie
 function removeTokens() {
@@ -27,7 +27,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-    config.cancelToken = getCurrentCancelToken()
+    // config.cancelToken = getCurrentCancelToken()
     let token = getToken("token") || "";
     // let each request carry token
     if (token) {
